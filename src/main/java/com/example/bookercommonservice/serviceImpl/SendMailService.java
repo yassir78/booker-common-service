@@ -21,15 +21,15 @@ public class SendMailService {
     private final MailContentBuilder mailContentBuilder;
 
     @Async
-    public void sendMail(NotificationEmail notificationEmail) {
+    public void sendMail(String subject,String recipient,String body) {
+        NotificationEmail notificationEmail = new NotificationEmail(subject,recipient,body);
         MimeMessagePreparator messagePreparator = mimeMessage -> {
             MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
             messageHelper.setFrom("geek.webfreelance@gmail.com");
             messageHelper.setTo(notificationEmail.getRecipient());
             messageHelper.setSubject(notificationEmail.getSubject());
             messageHelper.setText(mailContentBuilder.build(notificationEmail.getBody()), true);
-            //messageHelper.setText(notificationEmail.getBody());
-            
+
         };
         try {
             mailSender.send(messagePreparator);
