@@ -29,12 +29,13 @@ public class BookerCommonServiceApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         //Send account creation notification email
-        mailService.sendMail("Please Activate your Account",
+       /* mailService.sendMail("Please Activate your Account",
                 "yassir.acaf@gmail.com", "Thank you for signing up to Spring Dayliv, " +
                         "please click on the below url to activate your account : " +
-                        "http://localhost:8080/api/auth/accountVerification/" + "token");
+                        "http://localhost:8080/api/auth/accountVerification/" + "token");*/
 
     }
+
     @Bean
     public Gson jsonConverter() {
         return new Gson();

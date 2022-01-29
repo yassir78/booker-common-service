@@ -15,8 +15,12 @@ public class KafkaTopicConfig {
 
     @Value(value = "${kafka.bootstrapAddress}")
     private String bootstrapAddress;
-    @Value(value = "${kafka.topic.order-topic}")
-    private String topicName;
+    @Value(value = "${kafka.order-topic}")
+    private String orderTopic;
+    @Value(value = "${kafka.pay-order-topic}")
+    private String payOrderTopic;
+    @Value(value = "${kafka.update-order-topic}")
+    private String updateOrderTopic;
 
     @Bean
     public KafkaAdmin kafkaAdmin() {
@@ -27,6 +31,18 @@ public class KafkaTopicConfig {
 
     @Bean
     public NewTopic topic1() {
-        return new NewTopic(topicName, 1, (short) 1);
+        return new NewTopic(orderTopic, 1, (short) 1);
+    }
+
+
+
+    @Bean
+    public NewTopic topic2() {
+        return new NewTopic(payOrderTopic, 1, (short) 1);
+    }
+
+    @Bean
+    public NewTopic topic3() {
+        return new NewTopic(updateOrderTopic, 1, (short) 1);
     }
 }

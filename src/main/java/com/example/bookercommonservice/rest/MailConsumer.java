@@ -16,7 +16,7 @@ public class MailConsumer {
     private final UserProxy userProxy;
     private final Gson jsonConverter;
 
-    @KafkaListener(topics = "${kafka.topic.order-topic}", groupId = "groupId")
+    @KafkaListener(topics = "${kafka.order-topic}", groupId = "groupId")
     public void sendMailConsumer(String message) {
         MessageKafka msg = jsonConverter.fromJson(message, MessageKafka.class);
         CustomerOrderDto orderDto = jsonConverter.fromJson(msg.getPayload(), CustomerOrderDto.class);
